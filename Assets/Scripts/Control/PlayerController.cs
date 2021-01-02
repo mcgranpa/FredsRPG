@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
-using System;
+
 
 namespace RPG.Control
 {
@@ -35,14 +36,16 @@ namespace RPG.Control
 
         private bool InteractWithMovement()
         {
-            RaycastHit hitInfo;
+            RaycastHit hit;
             bool hasHit;
-            hasHit = Physics.Raycast(GetMouseRay(), out hitInfo);
+            hasHit = Physics.Raycast(GetMouseRay(), out hit);
             if (hasHit)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hitInfo.point);
+                    //GetComponent<Fighter>().Cancel();
+                    GetComponent<Mover>().MoveTo(hit.point);
+                    GetComponent<Mover>().StartMoveAction(hit.point);
                 }
                 return true;
             }
