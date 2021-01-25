@@ -24,10 +24,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2800161028109950630, guid: 2592383b6b44a204496305b51b0555ed,
+        type: 3}
+      propertyPath: weaponRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8826581515957434771, guid: 2592383b6b44a204496305b51b0555ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.3123779
       objectReference: {fileID: 0}
     - target: {fileID: 8826581515957434771, guid: 2592383b6b44a204496305b51b0555ed,
         type: 3}
@@ -37,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 8826581515957434771, guid: 2592383b6b44a204496305b51b0555ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.1868362
       objectReference: {fileID: 0}
     - target: {fileID: 8826581515957434771, guid: 2592383b6b44a204496305b51b0555ed,
         type: 3}

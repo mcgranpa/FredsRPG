@@ -37,7 +37,7 @@ namespace RPG.Combat
         private void AttackBehavior()
         {
             Health healthComponent = target.GetComponent<Health>();
-            if (healthComponent.GetHealth() <= 0.5f) return;
+            // if (healthComponent.GetHealth() <= 0.5f) return;
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 // this will trigger the Hit() event
