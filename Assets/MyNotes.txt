@@ -1,0 +1,6 @@
+Start with Stop Attacking Already
+more than one way to do this
+
+Ignore Dead Enemies 
+	remove collider?
+	make them disappear?

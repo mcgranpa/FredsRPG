@@ -13,7 +13,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
 
 
-        Transform target;
+        Health target;
         float timeSinceLastAttack = 0;
 
         private void Update()
@@ -21,9 +21,10 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
+            if (target.IsDead()) return;
             if (!GetIsInRange())
             {
-                GetComponent<Mover>().MoveTo(target.position);
+                GetComponent<Mover>().MoveTo(target.transform.position);
                 //print("not in range");
             }
             else
@@ -37,7 +38,7 @@ namespace RPG.Combat
         private void AttackBehavior()
         {
             Health healthComponent = target.GetComponent<Health>();
-            // if (healthComponent.GetHealth() <= 0.5f) return;
+ 
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 // this will trigger the Hit() event
@@ -49,18 +50,19 @@ namespace RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
         public void Attack(CombatTarget CombatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = CombatTarget.transform;
+            target = CombatTarget.GetComponent<Health>();
             //print("hit");
         }
 
         public void Cancel()
         {
+            GetComponent<Animator>().SetTrigger("stopAttack");
             target = null;
            // print("cancel");
         }
@@ -68,8 +70,8 @@ namespace RPG.Combat
         // called from animation Unarmed-Attack-L3
         void Hit()
         {
-            Health healthComponent = target.GetComponent<Health>();
-            healthComponent.TakeDamage(weaponDamage);
+            //Health healthComponent = target.GetComponent<Health>();
+            target.TakeDamage(weaponDamage);
         }
     }
 }
